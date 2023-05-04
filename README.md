@@ -1,1 +1,1 @@
-# cos332-practical7-2023
+# COS332 Practical 7 2023
