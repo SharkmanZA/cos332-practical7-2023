@@ -1,7 +1,7 @@
 import socket
 from datetime import datetime, timedelta
 
-#import poplib\\\
+#import poplib
 import ssl
 
 
@@ -16,16 +16,20 @@ def get_emails():
             response = ssock.recv(1024)
             print(response.decode())
 
-            ssock.send((b'USER jake.mileham@gmail.com\r\n'))
+            ssock.send((b'USER jake.dev.mileham@gmail.com\r\n'))
             response = ssock.recv(1024)
             print(response.decode())
 
-            ssock.send((b'PASS xxxxxxxxxxx\r\n'))
+            ssock.send((b'PASS xxxxxxxxxxxx\r\n'))
             response = ssock.recv(1024)
             print(response.decode())
 
-            ssock.send(f'STAT\n'.encode())
+            ssock.send(f'LIST\n'.encode())
             response = ssock.recv(1024)
+            print(response.decode())
+
+            ssock.send(f'RETR 4\n'.encode())
+            response = ssock.recv(2048)
             print(response.decode())
 
             ssock.send((b'QUIT\r\n'))
