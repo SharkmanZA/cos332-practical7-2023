@@ -8,10 +8,11 @@ HOST, PORT = '127.0.0.1', 1025
 SENDER = 'jake.dev.mileham@gmail.com'
 
 EMAIL = 'jake.dev.mileham@gmail.com'
+#app pasword used for POP3 to access emails
 PASSWORD = 'norzrrqgxivkcxkt'
 
 def send_email_to_sender(contents):
-    print(f'Sending Email to: {contents[1]}')
+    print(f'\033[32mSending Email to: {contents[1]}\033[0m\n')
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     my_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     my_socket.connect((HOST,PORT))
@@ -43,12 +44,16 @@ def send_email_to_sender(contents):
     print(response.decode())
 
     my_socket.close()
-    print("Email Sent✅")
+    print("✅ Sent")
     
     return
 
 #Find all emails that have the subject 'prac7' as they are important
 def find_all_emails(emails, ssock):
+    print("===================================================")
+    print("WAITING EMAILS")
+    print("===================================================\n")
+
     with open('valid.txt', 'w') as f:
         f.seek(0)
         rows = 0
@@ -63,11 +68,25 @@ def find_all_emails(emails, ssock):
                     msg += response
             sender  = re.search(r"from:.*?<([^>]+)>", msg, flags=re.IGNORECASE)
             subject = re.search(r'Subject: (.+?)\r\n', msg, flags=re.IGNORECASE)
+            contents = [str(id), sender.groups(0)[0], subject.groups(0)[0], str(size)]
+
+            GREEN = '\033[92m'
+            RED = '\033[91m'
+            END = '\033[0m'
+            color = GREEN if contents[2] == "prac7" else RED
+            
             # Clearly idk how format works
             if(subject.groups(0)[0] == 'prac7'):
-                f.write(f"{';'.join([str(id), sender.groups(0)[0], subject.groups(0)[0], str(size)])}\n")
+                
+
+                print(f'✅ {contents[0]}. Sender: {contents[1]} Subject: {color}{contents[2]}{END} Size: {contents[3]}')
+                f.write(f"{';'.join(contents)}\n")
                 rows = rows + 1
+            else:
+                print(f'❌ {contents[0]}. Sender: {contents[1]} Subject: {color}{contents[2]}{END} Size: {contents[3]}')
+
     f.close()
+    print("\n===================================================\n\n")
     return rows
 
 
@@ -112,7 +131,7 @@ def get_emails():
                 emails = f.readlines()
                 for email in emails:
                     contents = list(email.split(";"))
-                    print(f'{contents[0]}. Sender: {contents[1]} Subject: {contents[2]} Size: {contents[3]}')
+                    #print(f'{contents[0]}. Sender: {contents[1]} Subject: {contents[2]} Size: {contents[3]}')
                     send_email_to_sender(contents)
             f.close()
 
