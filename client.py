@@ -9,7 +9,7 @@ SENDER = 'jake.dev.mileham@gmail.com'
 
 EMAIL = 'jake.dev.mileham@gmail.com'
 #app pasword used for POP3 to access emails
-PASSWORD = 'norzrrqgxivkcxkt'
+PASSWORD = ''
 
 def send_email_to_sender(contents):
     print(f'\033[32mSending Email to: {contents[1]}\033[0m\n')
@@ -74,7 +74,7 @@ def find_all_emails(emails, ssock):
             RED = '\033[91m'
             END = '\033[0m'
             color = GREEN if contents[2] == "prac7" else RED
-            
+
             # Clearly idk how format works
             if(subject.groups(0)[0] == 'prac7'):
                 
