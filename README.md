@@ -5,8 +5,7 @@ The task was to retrieve emails from a POP3 server using POP3 commands. These em
 ---
 
 ## POP3 Server
-To read from my gmail account I used:
-https://docs.python.org/3/library/ssl.html
+To read from my gmail account I used the [ssl wrapper](https://docs.python.org/3/library/ssl.html) library
 
 This provided a secure connection to the gmail POP3 server so I could use my credentials.
 
