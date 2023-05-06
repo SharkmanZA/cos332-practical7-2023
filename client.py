@@ -135,6 +135,15 @@ def get_emails():
                     send_email_to_sender(contents)
             f.close()
 
+            print("Type out the emails you would like to delete, eg. 1,2,3,4 or type NONE: ")
+            ids_input = input()
+            if ids_input != 'NONE':
+                ids = list(ids_input.split(","))
+                for id in ids:
+                    ssock.send((f'DELE {int(id)}\r\n').encode())
+                    response = ssock.recv(2048)
+                    print(response.decode())
+
             ssock.send((b'QUIT\r\n'))
             response = ssock.recv(2048)
             print(response.decode())
