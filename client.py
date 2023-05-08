@@ -4,6 +4,7 @@ import re
 import ssl
 
 HOST, PORT = '127.0.0.1', 1025
+# smtp.gmail.com, 587 - use ssl lib
 
 SENDER = 'jake.dev.mileham@gmail.com'
 
@@ -165,3 +166,14 @@ if __name__ == '__main__':
 
 #TODO
 #1. Use RETR to remvoe from POP3 server
+
+#BONUS MARKS
+#USE TOP - 1
+#	Implementing support for the optional TOP command described in RFC 1939,
+#   which allows the client to retrieve only the headers or a specific number
+#   of lines from a message, reducing the amount of data transferred.
+
+#USE LIST - 1
+# 	Implementing support for the optional LIST command described in RFC 1939,
+#   which allows the client to retrieve a list of all messages on the server along
+#   with their sizes, improving the efficiency of message management.
