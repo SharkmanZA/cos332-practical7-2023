@@ -109,6 +109,10 @@ def get_emails():
             response = ssock.recv(2048)
             print(response.decode())
 
+            ssock.send(('NOOP \r\n').encode())
+            response = ssock.recv(2048)
+            print(response.decode())
+
             ssock.send(f'LIST\n'.encode())
             response = ssock.recv(2048)
             print(response.decode())
@@ -177,3 +181,5 @@ if __name__ == '__main__':
 # 	Implementing support for the optional LIST command described in RFC 1939,
 #   which allows the client to retrieve a list of all messages on the server along
 #   with their sizes, improving the efficiency of message management.
+
+#NOOP - 1 
