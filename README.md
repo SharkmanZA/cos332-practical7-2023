@@ -19,7 +19,7 @@ I used [mailhog](https://github.com/mailhog/MailHog) to send dumby mail to my se
 ## SETUP
 1. Download Source Code
 2. Install mailhog
-3. Run mainhog 
+3. Run mailhog 
   - Example: 'brew services start mailhog'
 4. Set EMAIL and SENDER field to your email
 5. Set PASSWORD field to your gmail app password
